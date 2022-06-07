@@ -113,14 +113,15 @@ fn merge_strings(mut s1: String, s2: String) -> String {
     s2
 }
 
-// TODO: how to make exercise for which you have to exercise ownership
 // Eg: double_append_char(String::from("hello"), '1', '0') = String::from("hello0hello1")
 pub fn double_append_char(s: String, c1: char, c2: char) -> String {
-    let s1 = append_char(s, c1);
+    let s1 = append_char(s.clone(), c1);
     let s2 = append_char(s, c2);
 
     merge_strings(s1, s2)
 }
+
+// TODO: how to make exercise for which you have to exercise ownership
 
 /// References
 
@@ -129,6 +130,8 @@ pub fn double_append_char(s: String, c1: char, c2: char) -> String {
 pub fn append_char_mut(s: &mut String, c: char) -> () {
     s.push(c);
 }
+
+// TODO: add more exercises for references
 
 /**
  * PRIMITIVE COMPOUND TYPES
@@ -227,15 +230,7 @@ pub struct Person {
     pub age: u32,
 }
 
-impl Person {
-    pub fn new(name: String, age: u32) -> Person {
-        Person { name, age }
-    }
-    pub fn is_underage(self) -> bool {
-        self.age >= 18
-    }
-}
-
+//
 // Eg: longest_name(Person::new(String::from("Marcus"), 23), Person::new(String::from("William"), 33)) = String::from("William")
 pub fn longest_name(person1: &Person, person2: &Person) -> String {
     if person1.name.len() < person2.name.len() {
@@ -245,9 +240,114 @@ pub fn longest_name(person1: &Person, person2: &Person) -> String {
     }
 }
 
+impl Person {
+    // Returns whether this person is less than 18 years old
+    // Eg: is_underage(Person::new(String::from("Niki"), 19)) = false
+    pub fn is_underage(&self) -> bool {
+        self.age < 18
+    }
+
+    // Sets the age for this person
+    pub fn set_age(&mut self, age: u32) -> () {
+        self.age = age;
+    }
+}
+
+// TODO: tuple and unit type variants
+
 /// Strings
 
+// Returns a greeting for the given person
 // Eg: greet(Person::new(String::from("Tony"), 43)) = String::from("Hello Tony, you are 43 years old!")
 pub fn greet(person: Person) -> String {
     format!("Hello {}, you are {} years old!", person.name, person.age)
+}
+
+// TODO: Add more exercises
+
+pub struct Rectangle {
+    pub width: f32,
+    pub height: f32,
+}
+
+impl Rectangle {
+    // Return a new instance of the Rectangle struct
+    pub fn new(width: f32, height: f32) -> Rectangle {
+        Rectangle { width, height }
+    }
+
+    // Compute the area for this shape
+    pub fn area(&self) -> f32 {
+        self.width * self.height
+    }
+}
+
+/// Enums
+
+pub enum Operation {
+    Increment,
+    Decrement,
+}
+
+// Count the number of Increment operations for the given array
+// Eg: count_increments([Operation::Increment, Operation::Decrement, Operation::Increment]) = 2
+pub fn count_increments(operations: [Operation; 3]) -> u32 {
+    let mut increments = 0;
+
+    for op in operations {
+        if let Operation::Increment = op {
+            increments += 1;
+        }
+    }
+
+    increments
+}
+
+// Perform the given operation on the given counter
+// Eg: perform_operation(4, Operation::Increment) = 5
+// Eg: perform_operation(0, Operation::Decrement) = 0 (!!)
+pub fn perform_operation(counter: u32, operation: Operation) -> u32 {
+    match operation {
+        Operation::Increment => counter + 1,
+        Operation::Decrement if counter == 0 => 0,
+        Operation::Decrement => counter - 1,
+    }
+}
+
+///
+
+pub enum Shape {
+    // TODO: remove variants
+    Rectangle { width: f32, height: f32 },
+    Square { size: f32 },
+    Triangle { base: f32, height: f32 },
+}
+
+impl Shape {
+    // Compute the area for this shape
+    pub fn area(&self) -> f32 {
+        match self {
+            Self::Triangle { base, height } => base * height / 2.0,
+            Self::Rectangle { width, height } => width * height,
+            Self::Square { size } => size * size,
+        }
+    }
+}
+
+pub enum BiggerResult {
+    ShapesAreEqual,
+    OneShapeIsBigger(Shape),
+}
+
+pub fn biggest(shape1: Shape, shape2: Shape) -> BiggerResult {
+    let area1 = shape1.area();
+    let area2 = shape2.area();
+
+    if area1 == area2 {
+        BiggerResult::ShapesAreEqual
+    } else if area1 > area2 {
+        BiggerResult::OneShapeIsBigger(shape1)
+    } else {
+        BiggerResult::OneShapeIsBigger(shape2)
+    }
 }

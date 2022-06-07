@@ -66,11 +66,23 @@ fn nth_prime_test() {
 
 #[test]
 fn append_char_test() {
+    assert_eq!(
+        append_char(String::from("hello"), '0'),
+        String::from("hello0")
+    );
+    assert_eq!(
+        append_char(String::from("hello"), '1'),
+        String::from("hello1")
+    );
+}
+
+#[test]
+fn append_char_mut_test() {
     let mut s = String::from("hello");
-    append_char(&mut s, '0');
+    append_char_mut(&mut s, '0');
     assert_eq!(s, String::from("hello0"));
 
     let mut s = String::from("asdf");
-    append_char(&mut s, '1');
+    append_char_mut(&mut s, '1');
     assert_eq!(s, String::from("asdf1"));
 }
