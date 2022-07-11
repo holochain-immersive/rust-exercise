@@ -1,4 +1,4 @@
-
+# Rust Exercises
 
 ## Your Goals
 
@@ -23,7 +23,7 @@ cargo test
 Which should give an output with the summary of the tests like this one: 
 
 ```
-test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+test result: FAILED. 0 passed; 17 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
 ```
 
 ## What's in this repository
