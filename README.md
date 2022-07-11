@@ -4,7 +4,7 @@ This is a Rust library that contains multiple utility functions, to get introduc
 
 ## Your Goals
 
-Clone this repository, and go to `src/lib.rs` to see them.
+Clone this repository, and go to `src/lib.rs` to see the exercises.
 
 **Your goal is to implement all the `unimplemented!()` functions in this library, making all the tests pass.** 
 
