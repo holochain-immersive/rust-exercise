@@ -83,7 +83,7 @@ pub fn triplicate_string(s: String) -> (String, String, String) {
 
 /// Arrays
 
-// Return an array of 10 elements, and fill it with the given number
+// Return an array of 5 elements, and fill it with the given number
 // Eg: build_array(2) == [2, 2, 2, 2, 2]
 pub fn build_array(n: u32) -> [u32; 5] {
     unimplemented!()
