@@ -1,8 +1,10 @@
 # Rust Exercises
 
+This is a Rust library that contains multiple utility functions, to get introduced into the fundamentals of rust.
+
 ## Your Goals
 
-This is a Rust library that contains multiple utility functions. Go to `src/lib.rs` to see them.
+Clone this repository, and go to `src/lib.rs` to see them.
 
 **Your goal is to implement all the `unimplemented!()` functions in this library, making all the tests pass.** 
 
